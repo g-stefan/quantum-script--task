@@ -18,5 +18,5 @@ cmdX(){
 }
 
 cmdX file-to-cs --touch=source/quantum-script-extension-task.cpp --file-in=source/quantum-script-extension-task.js --file-out=source/quantum-script-extension-task.src --is-string --name=extensionTaskSource
-cmdX xyo-cc --mode=$ACTION @util/quantum-script-extension-task.static.compile.info
-cmdX xyo-cc --mode=$ACTION @util/quantum-script-extension-task.dynamic.compile.info
+cmdX xyo-cc --mode=$ACTION @util/quantum-script-extension-task.static.compile
+cmdX xyo-cc --mode=$ACTION @util/quantum-script-extension-task.dynamic.compile
