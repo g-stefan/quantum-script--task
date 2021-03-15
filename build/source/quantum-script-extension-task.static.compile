@@ -1,6 +1,6 @@
 --lib qse-task
 --project-base=quantum-script-extension-task
---source-is-separate
+--build-include
 --use-project=quantum-script.static
 --install-dev
 --install-inc=quantum-script-extension
