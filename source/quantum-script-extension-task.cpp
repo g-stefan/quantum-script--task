@@ -14,7 +14,7 @@
 #include "quantum-script-extension-task-license.hpp"
 #include "quantum-script-extension-task.hpp"
 #ifndef QUANTUM_SCRIPT_EXTENSION_TASK_NO_VERSION
-#include "quantum-script-extension-task-version.hpp"
+#	include "quantum-script-extension-task-version.hpp"
 #endif
 
 #include "quantum-script-extension-task.src"
@@ -58,4 +58,3 @@ extern "C" QUANTUM_SCRIPT_EXTENSION_TASK_EXPORT void quantumScriptExtension(Quan
 	Quantum::Script::Extension::Task::initExecutive(executive, extensionId);
 };
 #endif
-

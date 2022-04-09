@@ -12,6 +12,5 @@
 #include "quantum-script-extension-task-license.cpp"
 
 #ifndef QUANTUM_SCRIPT_EXTENSION_TASK_NO_VERSION
-#include "quantum-script-extension-task-version.cpp"
+#	include "quantum-script-extension-task-version.cpp"
 #endif
-
