@@ -13,23 +13,22 @@
 
 namespace XYO::QuantumScript::Extension::Task {
 
-				void registerInternalExtension(Executive *executive) {
-					executive->registerInternalExtension("Task", initExecutive);
-				};
+	void registerInternalExtension(Executive *executive) {
+		executive->registerInternalExtension("Task", initExecutive);
+	};
 
-				void initExecutive(Executive *executive, void *extensionId) {
+	void initExecutive(Executive *executive, void *extensionId) {
 
-					String info = "Task\r\n";
-					info << License::shortLicense();
+		String info = "Task\r\n";
+		info << License::shortLicense();
 
-					executive->setExtensionName(extensionId, "Task");
-					executive->setExtensionInfo(extensionId, info);
-					executive->setExtensionVersion(extensionId, Extension::Task::Version::versionWithBuild());
-					executive->setExtensionPublic(extensionId, true);
+		executive->setExtensionName(extensionId, "Task");
+		executive->setExtensionInfo(extensionId, info);
+		executive->setExtensionVersion(extensionId, Extension::Task::Version::versionWithBuild());
+		executive->setExtensionPublic(extensionId, true);
 
-					executive->compileStringX(librarySource);
-				};
-
+		executive->compileStringX(librarySource);
+	};
 
 };
 

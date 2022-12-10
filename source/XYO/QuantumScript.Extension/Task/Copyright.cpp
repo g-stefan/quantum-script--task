@@ -13,7 +13,6 @@ namespace XYO::QuantumScript::Extension::Task::Copyright {
 	static const char *publisher_ = XYO_QUANTUMSCRIPT_EXTENSION_TASK_PUBLISHER;
 	static const char *company_ = XYO_QUANTUMSCRIPT_EXTENSION_TASK_COMPANY;
 	static const char *contact_ = XYO_QUANTUMSCRIPT_EXTENSION_TASK_CONTACT;
-	static const char *fullCopyright_ = XYO_QUANTUMSCRIPT_EXTENSION_TASK_FULL_COPYRIGHT;
 
 	const char *copyright() {
 		return copyright_;
@@ -29,10 +28,6 @@ namespace XYO::QuantumScript::Extension::Task::Copyright {
 
 	const char *contact() {
 		return contact_;
-	};
-
-	const char *fullCopyright() {
-		return fullCopyright_;
 	};
 
 };
