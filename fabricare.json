@@ -13,6 +13,8 @@
 			"quantum-script--console",
 			"quantum-script--thread",
 			"quantum-script--datetime"
-		]
+		],
+		"hasRelease" : true,
+		"githubRelease" : true
 	}
 }
