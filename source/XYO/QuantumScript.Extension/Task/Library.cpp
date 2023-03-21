@@ -20,7 +20,7 @@ namespace XYO::QuantumScript::Extension::Task {
 	void initExecutive(Executive *executive, void *extensionId) {
 
 		String info = "Task\r\n";
-		info << License::shortLicense();
+		info << License::shortLicense().c_str();
 
 		executive->setExtensionName(extensionId, "Task");
 		executive->setExtensionInfo(extensionId, info);
