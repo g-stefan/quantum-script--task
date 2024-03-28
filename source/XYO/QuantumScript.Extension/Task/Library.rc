@@ -8,4 +8,4 @@
 #include <XYO/QuantumScript.Extension/Task/Copyright.rh>
 #include <XYO/QuantumScript.Extension/Task/Version.rh>
 
-XYO_APPLICATION_VERSION_INFO(XYO_QUANTUMSCRIPT_EXTENSION_TASK,"quantum-script--task.dll","Quantum Script Extension Task")
+XYO_PLATFORM_VERSION_INFO(XYO_QUANTUMSCRIPT_EXTENSION_TASK,"quantum-script--task.dll","Quantum Script Extension Task")
