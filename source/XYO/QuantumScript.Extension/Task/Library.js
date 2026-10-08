@@ -10,69 +10,54 @@ Script.requireExtension("DateTime");
 function TaskQueue() {
 	this.queue = [];
 	this.queueIndex = 0;
-	this.timeout = [];
-	this.interval = [];
-
-	this.getTimeoutFreeSlot = function() {
-		for(var k = 0; k < this.timeout.length; ++k) {
-			if(this.timeout[k]) {
-				continue;
-			};
-			return k;
-		};
-		return this.timeout.length;
-	};
+	// Active timers by id; an id is never reused, so a cleared timer cannot come back
+	this.timeout = {};
+	this.interval = {};
+	this.nextId = 1;
 
 	this.setTimeout = function(fn, milisec) {
 		var fnTime = DateTime.timestampInMilliseconds() + milisec;
-		var index = this.getTimeoutFreeSlot();
+		var id = this.nextId;
+		++this.nextId;
 
 		var fnArgs = [];
 		for(var k = 2; k < arguments.length; ++k) {
 			fnArgs[k - 2] = arguments[k];
 		};
 
-		this.timeout[index] = true;
+		this.timeout[id] = true;
 		this.queue[this.queue.length] = (function() {
-			if(!this.timeout[index]) {
+			if(!this.timeout[id]) {
 				return false;
 			};
 			if(DateTime.timestampInMilliseconds() < fnTime) {
 				return true;
 			};
+			delete this.timeout[id];
 			fn.apply(undefined, fnArgs);
 			return false;
 		}).bind(this);
-		return index;
+		return id;
 	};
 
 	this.clearTimeout = function(id) {
-		this.timeout[id] = false;
-	};
-
-	this.getIntervalFreeSlot = function() {
-		for(var k = 0; k < this.interval.length; ++k) {
-			if(this.interval[k]) {
-				continue;
-			};
-			return k;
-		};
-		return this.interval.length;
+		delete this.timeout[id];
 	};
 
 	this.setInterval = function(fn, milisec) {
 		var fnTime = DateTime.timestampInMilliseconds() + milisec;
-		var index = this.getIntervalFreeSlot();
+		var id = this.nextId;
+		++this.nextId;
 
 		var fnArgs = [];
 		for(var k = 2; k < arguments.length; ++k) {
 			fnArgs[k - 2] = arguments[k];
 		};
 
-		this.interval[index] = true;
+		this.interval[id] = true;
 
 		this.queue[this.queue.length] = (function() {
-			if(!this.interval[index]) {
+			if(!this.interval[id]) {
 				return false;
 			};
 			if(DateTime.timestampInMilliseconds() < fnTime) {
@@ -83,11 +68,11 @@ function TaskQueue() {
 			fn.apply(undefined, fnArgs);
 			return true;
 		}).bind(this);
-		return index;
+		return id;
 	};
 
 	this.clearInterval = function(id) {
-		this.interval[id] = false;
+		delete this.interval[id];
 	};
 
 	this.spin = function() {
@@ -98,7 +83,7 @@ function TaskQueue() {
 		while(this.queue.length) {
 			if(this.queueIndex >= this.queue.length) {
 				this.queueIndex = 0;
-				for(k = 0; k < this.queue.length;) {
+				for(var k = 0; k < this.queue.length;) {
 					if(!this.queue[k]) {
 						delete this.queue[k];
 						continue;
